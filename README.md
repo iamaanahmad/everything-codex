@@ -187,7 +187,7 @@ Use `/personality` command to switch.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/everything-codex.git
+git clone https://github.com/iamaanahmad/everything-codex.git
 
 # Navigate to directory
 cd everything-codex

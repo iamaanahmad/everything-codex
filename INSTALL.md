@@ -22,7 +22,7 @@ Complete installation guide for everything-codex.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/everything-codex.git
+git clone https://github.com/iamaanahmad/everything-codex.git
 
 # Navigate to directory
 cd everything-codex
@@ -398,7 +398,7 @@ rm -rf ~/.codex
 
 - **Documentation**: [Codex Docs](https://developers.openai.com/codex)
 - **Community**: [Codex Community](https://community.openai.com/c/codex)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/everything-codex/issues)
+- **Issues**: [GitHub Issues](https://github.com/iamaanahmad/everything-codex/issues)
 
 ## Resources
 
