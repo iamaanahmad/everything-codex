@@ -1,0 +1,23 @@
+{
+  "name": "Daily Issue Triage",
+  "version": "1.0.0",
+  "description": "Automatically triage new GitHub issues every morning",
+  "schedule": "0 9 * * *",
+  "timezone": "America/New_York",
+  "enabled": true,
+  "instructions": "Review all new GitHub issues created in the last 24 hours. For each issue:\n1. Categorize by type (bug, feature, question, documentation)\n2. Assign priority (P0-P3) based on severity and impact\n3. Add appropriate labels\n4. Suggest assignee based on area of expertise\n5. Flag security issues immediately\n6. Identify duplicates\n7. Request more information if needed\n\nProvide a summary report with:\n- Total new issues\n- Issues by priority\n- Critical issues requiring immediate attention\n- Recommended actions",
+  "skills": [
+    "github-integration-skill",
+    "issue-triage-skill"
+  ],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": true,
+    "onError": true,
+    "channels": ["slack", "email"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

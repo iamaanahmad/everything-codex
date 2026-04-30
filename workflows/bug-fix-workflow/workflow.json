@@ -1,0 +1,68 @@
+{
+  "name": "Bug Fix Workflow",
+  "version": "1.0.0",
+  "description": "Multi-agent workflow for systematic bug fixing",
+  "agents": [
+    {
+      "id": "investigation-agent",
+      "name": "Investigation Agent",
+      "role": "Investigate and identify root cause",
+      "branch": "bugfix/{{bug-id}}-investigation",
+      "tasks": [
+        "Reproduce the bug",
+        "Gather logs and metrics",
+        "Identify root cause",
+        "Document findings",
+        "Propose solution"
+      ],
+      "skills": ["debugging-skill", "log-analysis-skill"],
+      "dependencies": []
+    },
+    {
+      "id": "fix-agent",
+      "name": "Fix Agent",
+      "role": "Implement the bug fix",
+      "branch": "bugfix/{{bug-id}}-fix",
+      "tasks": [
+        "Write failing test that reproduces bug",
+        "Implement fix",
+        "Verify fix resolves issue",
+        "Check for side effects",
+        "Update error handling"
+      ],
+      "skills": ["tdd-workflow-skill"],
+      "dependencies": ["investigation-agent"]
+    },
+    {
+      "id": "testing-agent",
+      "name": "Testing Agent",
+      "role": "Verify fix and prevent regression",
+      "branch": "bugfix/{{bug-id}}-tests",
+      "tasks": [
+        "Add regression tests",
+        "Test edge cases",
+        "Verify related functionality",
+        "Run full test suite",
+        "Performance testing"
+      ],
+      "skills": ["testing-skill"],
+      "dependencies": ["fix-agent"]
+    },
+    {
+      "id": "docs-agent",
+      "name": "Documentation Agent",
+      "role": "Update documentation if needed",
+      "branch": "bugfix/{{bug-id}}-docs",
+      "tasks": [
+        "Update changelog",
+        "Document fix",
+        "Update known issues",
+        "Add troubleshooting guide"
+      ],
+      "skills": ["documentation-skill"],
+      "dependencies": ["fix-agent"]
+    }
+  ],
+  "mergeStrategy": "sequential",
+  "reviewRequired": true
+}

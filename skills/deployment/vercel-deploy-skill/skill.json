@@ -1,0 +1,19 @@
+{
+  "name": "vercel-deploy-skill",
+  "version": "1.0.0",
+  "description": "Deploy web applications to Vercel with optimization",
+  "author": "everything-codex",
+  "category": "deployment",
+  "tags": ["vercel", "deployment", "hosting"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["vercel-cli"],
+  "configuration": {
+    "autoOptimize": true,
+    "runTests": true,
+    "createPreview": true
+  }
+}

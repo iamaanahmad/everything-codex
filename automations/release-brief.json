@@ -1,0 +1,22 @@
+{
+  "name": "Release Brief",
+  "version": "1.0.0",
+  "description": "Generate daily release brief with merged PRs and changes",
+  "schedule": "0 17 * * *",
+  "timezone": "America/New_York",
+  "enabled": true,
+  "instructions": "Generate a comprehensive release brief for the day:\n1. List all merged PRs since last brief\n2. Categorize changes (features, bug fixes, improvements, breaking changes)\n3. Extract key changes from PR descriptions\n4. Identify breaking changes\n5. List contributors\n6. Generate changelog entries\n7. Suggest version bump (major, minor, patch)\n8. Highlight security fixes\n\nProvide a release brief with:\n- Summary of changes\n- Detailed changelog\n- Breaking changes (if any)\n- Contributors\n- Recommended version\n- Release notes draft",
+  "skills": [
+    "github-integration-skill",
+    "changelog-generator-skill"
+  ],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": true,
+    "channels": ["slack", "email"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

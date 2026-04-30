@@ -1,0 +1,70 @@
+{
+  "team": "engineering",
+  "version": "1.0.0",
+  "skills": {
+    "enabled": [
+      "code-review-skill",
+      "tdd-workflow-skill",
+      "debugging-skill",
+      "vercel-deploy-skill",
+      "linear-integration-skill",
+      "figma-to-code-skill",
+      "security-scan-skill"
+    ],
+    "autoActivate": true,
+    "customSkillsPath": ".codex/skills"
+  },
+  "automations": {
+    "enabled": true,
+    "reviewRequired": true,
+    "notifications": {
+      "slack": {
+        "enabled": true,
+        "channel": "#engineering"
+      },
+      "email": {
+        "enabled": true,
+        "recipients": ["team@example.com"]
+      }
+    }
+  },
+  "sandbox": {
+    "allowedCommands": [
+      "npm",
+      "yarn",
+      "pnpm",
+      "git",
+      "node",
+      "python",
+      "pip",
+      "docker",
+      "kubectl"
+    ],
+    "networkAccess": "ask",
+    "fileSystemAccess": "project-only"
+  },
+  "personality": "terse",
+  "codeStyle": {
+    "language": "typescript",
+    "formatter": "prettier",
+    "linter": "eslint",
+    "testFramework": "jest"
+  },
+  "git": {
+    "defaultBranch": "main",
+    "branchPrefix": {
+      "feature": "feature/",
+      "bugfix": "bugfix/",
+      "hotfix": "hotfix/"
+    },
+    "commitConvention": "conventional-commits",
+    "requirePRReview": true
+  },
+  "deployment": {
+    "environments": ["development", "staging", "production"],
+    "requireApproval": {
+      "staging": false,
+      "production": true
+    }
+  }
+}

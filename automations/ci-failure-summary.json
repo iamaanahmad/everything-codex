@@ -1,0 +1,24 @@
+{
+  "name": "CI Failure Summary",
+  "version": "1.0.0",
+  "description": "Monitor CI/CD pipelines and summarize failures every 6 hours",
+  "schedule": "0 */6 * * *",
+  "timezone": "UTC",
+  "enabled": true,
+  "instructions": "Check all CI/CD pipeline runs in the last 6 hours. For each failure:\n1. Identify the failing job/step\n2. Extract error messages\n3. Identify patterns (flaky tests, infrastructure issues, code issues)\n4. Suggest potential fixes\n5. Link to relevant logs\n6. Identify if it's a recurring issue\n\nProvide a summary report with:\n- Total runs and failure rate\n- Failures by type (test, build, deploy)\n- Most common failure reasons\n- Recommended actions\n- Trends compared to previous period",
+  "skills": [
+    "github-actions-skill",
+    "ci-monitoring-skill"
+  ],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": true,
+    "onError": true,
+    "onCritical": true,
+    "channels": ["slack"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "code-review-skill",
+  "version": "1.0.0",
+  "description": "Comprehensive code review with security, performance, and quality checks",
+  "author": "everything-codex",
+  "category": "development",
+  "tags": ["code-review", "security", "performance", "quality"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": false,
+    "shell": false
+  },
+  "dependencies": [],
+  "configuration": {
+    "checkSecurity": true,
+    "checkPerformance": true,
+    "checkQuality": true,
+    "checkTests": true,
+    "minCoverage": 80
+  }
+}

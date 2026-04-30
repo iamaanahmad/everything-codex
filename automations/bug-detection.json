@@ -1,0 +1,23 @@
+{
+  "name": "Bug Detection Scan",
+  "version": "1.0.0",
+  "description": "Scan codebase for potential bugs and code smells",
+  "schedule": "0 2 * * *",
+  "timezone": "UTC",
+  "enabled": true,
+  "instructions": "Perform comprehensive bug detection scan:\n1. Run static analysis tools\n2. Check for common bug patterns\n3. Identify code smells\n4. Check for security vulnerabilities\n5. Analyze error handling\n6. Check for memory leaks\n7. Identify performance issues\n8. Check for deprecated API usage\n\nProvide a report with:\n- Total issues found\n- Issues by severity (critical, high, medium, low)\n- Issues by category (security, performance, quality)\n- Recommended fixes\n- Trends compared to previous scan",
+  "skills": [
+    "static-analysis-skill",
+    "security-scan-skill"
+  ],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": true,
+    "onCritical": true,
+    "channels": ["slack"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

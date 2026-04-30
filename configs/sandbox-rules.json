@@ -1,0 +1,158 @@
+{
+  "version": "1.0.0",
+  "description": "Sandbox security rules for Codex",
+  "rules": [
+    {
+      "command": "npm install",
+      "permission": "allow",
+      "reason": "Safe package installation"
+    },
+    {
+      "command": "npm ci",
+      "permission": "allow",
+      "reason": "Clean install from lock file"
+    },
+    {
+      "command": "yarn install",
+      "permission": "allow",
+      "reason": "Safe package installation"
+    },
+    {
+      "command": "git add",
+      "permission": "allow",
+      "reason": "Stage changes"
+    },
+    {
+      "command": "git commit",
+      "permission": "allow",
+      "reason": "Commit changes"
+    },
+    {
+      "command": "git push",
+      "permission": "ask",
+      "reason": "Requires confirmation before pushing"
+    },
+    {
+      "command": "git push --force",
+      "permission": "deny",
+      "reason": "Force push is dangerous"
+    },
+    {
+      "command": "rm -rf",
+      "permission": "deny",
+      "reason": "Dangerous deletion command"
+    },
+    {
+      "command": "rm -rf node_modules",
+      "permission": "allow",
+      "reason": "Safe to delete node_modules"
+    },
+    {
+      "pattern": "curl *",
+      "permission": "ask",
+      "reason": "Network access requires approval"
+    },
+    {
+      "pattern": "wget *",
+      "permission": "ask",
+      "reason": "Network access requires approval"
+    },
+    {
+      "command": "docker build",
+      "permission": "allow",
+      "reason": "Build Docker images"
+    },
+    {
+      "command": "docker run",
+      "permission": "ask",
+      "reason": "Running containers requires approval"
+    },
+    {
+      "pattern": "kubectl apply *",
+      "permission": "ask",
+      "reason": "Kubernetes changes require approval"
+    },
+    {
+      "pattern": "kubectl delete *",
+      "permission": "ask",
+      "reason": "Kubernetes deletion requires approval"
+    },
+    {
+      "command": "npm run test",
+      "permission": "allow",
+      "reason": "Running tests is safe"
+    },
+    {
+      "command": "npm run build",
+      "permission": "allow",
+      "reason": "Building is safe"
+    },
+    {
+      "pattern": "npm run deploy*",
+      "permission": "ask",
+      "reason": "Deployment requires approval"
+    },
+    {
+      "pattern": "vercel deploy*",
+      "permission": "ask",
+      "reason": "Deployment requires approval"
+    },
+    {
+      "command": "python",
+      "permission": "allow",
+      "reason": "Run Python scripts"
+    },
+    {
+      "command": "pip install",
+      "permission": "allow",
+      "reason": "Install Python packages"
+    },
+    {
+      "pattern": "sudo *",
+      "permission": "deny",
+      "reason": "Elevated privileges not allowed"
+    },
+    {
+      "pattern": "chmod 777 *",
+      "permission": "deny",
+      "reason": "Insecure permissions"
+    },
+    {
+      "pattern": "eval *",
+      "permission": "deny",
+      "reason": "Code evaluation is dangerous"
+    }
+  ],
+  "defaultPermission": "ask",
+  "networkRules": {
+    "allowedDomains": [
+      "github.com",
+      "npmjs.com",
+      "pypi.org",
+      "vercel.com",
+      "linear.app"
+    ],
+    "blockedDomains": [],
+    "requireApproval": true
+  },
+  "fileSystemRules": {
+    "allowedPaths": [
+      ".",
+      "./src",
+      "./tests",
+      "./docs"
+    ],
+    "blockedPaths": [
+      "/etc",
+      "/var",
+      "/usr",
+      "~/.ssh",
+      "~/.aws"
+    ],
+    "requireApproval": [
+      ".env",
+      ".env.local",
+      ".env.production"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "tdd-workflow-skill",
+  "version": "1.0.0",
+  "description": "Test-Driven Development workflow implementation",
+  "author": "everything-codex",
+  "category": "development",
+  "tags": ["tdd", "testing", "workflow"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": false,
+    "shell": true
+  },
+  "dependencies": [],
+  "configuration": {
+    "testFramework": "auto-detect",
+    "minCoverage": 80,
+    "runTestsAfterImplementation": true
+  }
+}

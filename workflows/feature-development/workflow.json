@@ -1,0 +1,69 @@
+{
+  "name": "Feature Development Workflow",
+  "version": "1.0.0",
+  "description": "Multi-agent workflow for complete feature development",
+  "agents": [
+    {
+      "id": "backend-agent",
+      "name": "Backend Agent",
+      "role": "Implement backend API and business logic",
+      "branch": "feature/{{feature-name}}-backend",
+      "tasks": [
+        "Design API endpoints",
+        "Implement business logic",
+        "Add database migrations",
+        "Write unit tests",
+        "Add API documentation"
+      ],
+      "skills": ["tdd-workflow-skill", "api-design-skill"],
+      "dependencies": []
+    },
+    {
+      "id": "frontend-agent",
+      "name": "Frontend Agent",
+      "role": "Implement UI components and integration",
+      "branch": "feature/{{feature-name}}-frontend",
+      "tasks": [
+        "Create UI components",
+        "Implement state management",
+        "Integrate with backend API",
+        "Add responsive design",
+        "Ensure accessibility"
+      ],
+      "skills": ["figma-to-code-skill", "react-patterns-skill"],
+      "dependencies": ["backend-agent"]
+    },
+    {
+      "id": "testing-agent",
+      "name": "Testing Agent",
+      "role": "Create comprehensive test suite",
+      "branch": "feature/{{feature-name}}-tests",
+      "tasks": [
+        "Write integration tests",
+        "Create E2E tests",
+        "Add visual regression tests",
+        "Verify test coverage",
+        "Test edge cases"
+      ],
+      "skills": ["testing-skill", "e2e-testing-skill"],
+      "dependencies": ["backend-agent", "frontend-agent"]
+    },
+    {
+      "id": "docs-agent",
+      "name": "Documentation Agent",
+      "role": "Update documentation",
+      "branch": "feature/{{feature-name}}-docs",
+      "tasks": [
+        "Update API documentation",
+        "Add user guide",
+        "Update README",
+        "Create examples",
+        "Update changelog"
+      ],
+      "skills": ["documentation-skill"],
+      "dependencies": ["backend-agent", "frontend-agent"]
+    }
+  ],
+  "mergeStrategy": "sequential",
+  "reviewRequired": true
+}

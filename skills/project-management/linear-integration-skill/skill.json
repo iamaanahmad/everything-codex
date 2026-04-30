@@ -1,0 +1,19 @@
+{
+  "name": "linear-integration-skill",
+  "version": "1.0.0",
+  "description": "Manage projects and issues in Linear",
+  "author": "everything-codex",
+  "category": "project-management",
+  "tags": ["linear", "project-management", "issues"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": false
+  },
+  "dependencies": ["linear-api"],
+  "configuration": {
+    "autoAssign": true,
+    "autoPrioritize": true,
+    "autoLabel": true
+  }
+}

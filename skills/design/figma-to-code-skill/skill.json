@@ -1,0 +1,20 @@
+{
+  "name": "figma-to-code-skill",
+  "version": "1.0.0",
+  "description": "Convert Figma designs to production-ready code",
+  "author": "everything-codex",
+  "category": "design",
+  "tags": ["figma", "design", "ui", "conversion"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": true,
+    "shell": false
+  },
+  "dependencies": ["figma-api"],
+  "configuration": {
+    "framework": "react",
+    "styling": "tailwind",
+    "responsive": true,
+    "accessibility": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Dependency Updates Check",
+  "version": "1.0.0",
+  "description": "Check for dependency updates and security vulnerabilities",
+  "schedule": "0 10 * * 1",
+  "timezone": "UTC",
+  "enabled": true,
+  "instructions": "Check all project dependencies:\n1. Identify outdated dependencies\n2. Check for security vulnerabilities\n3. Categorize updates (major, minor, patch)\n4. Check breaking changes in major updates\n5. Verify compatibility\n6. Suggest update strategy\n7. Create update PRs for safe updates\n\nProvide a report with:\n- Total dependencies\n- Outdated dependencies\n- Security vulnerabilities\n- Recommended updates\n- Breaking changes to watch\n- Auto-update candidates (patch versions)",
+  "skills": [
+    "dependency-management-skill",
+    "security-scan-skill"
+  ],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": true,
+    "onSecurityIssue": true,
+    "channels": ["slack", "email"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}
