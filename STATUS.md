@@ -1,12 +1,51 @@
 # everything-codex Status
 
-## Completion Status: ✅ COMPLETE
+## Completion Status: ✅ UPDATED
 
-Created: April 30, 2026
+Created: April 30, 2025
+Last Updated: May 30, 2025
+
+## Latest Updates (v1.2.0)
+
+### New Skills (10 added)
+- ✅ `skills/development/debugging-skill/`
+- ✅ `skills/development/refactoring-skill/`
+- ✅ `skills/deployment/netlify-deploy-skill/`
+- ✅ `skills/deployment/cloudflare-deploy-skill/`
+- ✅ `skills/deployment/docker-deploy-skill/`
+- ✅ `skills/design/image-generation-skill/`
+- ✅ `skills/design/ui-mockup-skill/`
+- ✅ `skills/project-management/github-pr-skill/`
+- ✅ `skills/project-management/issue-triage-skill/`
+- ✅ `skills/documentation/` — api-docs, readme-generator, changelog skills
+
+### New Workflows (2 added)
+- ✅ `workflows/refactoring-workflow/`
+- ✅ `workflows/deployment-workflow/`
+
+### New Automations (2 added)
+- ✅ `automations/security-scan.json`
+- ✅ `automations/performance-monitor.json`
+
+### New Prompts (2 added)
+- ✅ `prompts/performance-prompts.md`
+- ✅ `prompts/security-prompts.md`
+
+### New Configs
+- ✅ `configs/mcp-config.json` — MCP server configuration template
+- ✅ `.codex/rules/default.md` — project-level Codex CLI rules
+
+### New Examples
+- ✅ `examples/api-service-example/` — Express + TypeScript + PostgreSQL
+- ✅ `examples/game-development-example/` — TypeScript + HTML5 Canvas
+- ✅ `codex.md` added to all examples
+
+### New Docs
+- ✅ `COMPARISON.md` — detailed comparison vs Claude Code, Kiro, Cursor, Copilot Workspace
 
 ## Overview
 
-everything-codex is now a comprehensive collection of Codex configurations, skills, automations, and workflows inspired by everything-claude-code and adapted for OpenAI's Codex multi-agent coding platform.
+everything-codex is now a comprehensive collection of Codex configurations, skills, automations, and workflows adapted for OpenAI's Codex multi-agent coding platform.
 
 ## What's Included
 
@@ -259,7 +298,7 @@ everything-codex/
 
 ## Inspiration & Credits
 
-- **everything-claude-code**: Original comprehensive collection by affaan-m
+- **Original upstream collection**: The source project that informed everything-codex
 - **OpenAI Codex**: Multi-agent coding platform
 - **Real-world usage**: Patterns from production development
 
@@ -281,9 +320,10 @@ everything-codex is now a **complete, production-ready collection** of:
 
 **Status**: ✅ Ready for use and contribution
 
-**Created**: April 30, 2026
+**Created**: April 30, 2025
+**Last Updated**: May 31, 2025
 
-**Version**: 1.0.0
+**Version**: 1.2.0
 
 ---
 

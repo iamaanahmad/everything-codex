@@ -1,0 +1,19 @@
+{
+  "name": "readme-generator-skill",
+  "version": "1.0.0",
+  "description": "Generate comprehensive, well-structured README files from project analysis",
+  "author": "everything-codex",
+  "category": "documentation",
+  "tags": ["readme", "documentation", "markdown", "onboarding"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": false,
+    "shell": true
+  },
+  "dependencies": [],
+  "configuration": {
+    "includeBadges": true,
+    "includeTableOfContents": true,
+    "includeContributing": true
+  }
+}

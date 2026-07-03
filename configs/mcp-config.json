@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "description": "MCP (Model Context Protocol) server configuration for Codex CLI. Place at ~/.codex/config.json or merge into existing config.",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "<your-github-token>"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/your/project"],
+      "description": "Gives Codex access to read/write files in the specified directory"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "DATABASE_URL": "<your-postgres-connection-string>"
+      },
+      "description": "Allows Codex to query your PostgreSQL database directly"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "<your-brave-api-key>"
+      },
+      "description": "Web search capability for Codex CLI"
+    },
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "linear-mcp-server"],
+      "env": {
+        "LINEAR_API_KEY": "<your-linear-api-key>"
+      },
+      "description": "Read and create Linear issues from Codex CLI"
+    }
+  },
+  "notes": [
+    "Replace all <placeholder> values with real credentials",
+    "Never commit this file with real credentials — add to .gitignore",
+    "Only enable MCP servers you actually need",
+    "MCP servers run as local processes — review their source before use",
+    "Full MCP server list: https://github.com/modelcontextprotocol/servers"
+  ]
+}

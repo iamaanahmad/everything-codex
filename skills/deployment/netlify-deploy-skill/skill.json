@@ -1,0 +1,20 @@
+{
+  "name": "netlify-deploy-skill",
+  "version": "1.0.0",
+  "description": "Deploy web applications to Netlify with forms, functions, and edge support",
+  "author": "everything-codex",
+  "category": "deployment",
+  "tags": ["netlify", "deployment", "hosting", "serverless"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["netlify-cli"],
+  "configuration": {
+    "runTests": true,
+    "createPreview": true,
+    "enableFunctions": false,
+    "enableForms": false
+  }
+}

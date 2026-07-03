@@ -1,0 +1,20 @@
+{
+  "name": "github-pr-skill",
+  "version": "1.0.0",
+  "description": "Create, review, and manage GitHub pull requests with best practices",
+  "author": "everything-codex",
+  "category": "project-management",
+  "tags": ["github", "pull-request", "code-review", "git"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["gh"],
+  "configuration": {
+    "requireReviewer": true,
+    "autoAssign": true,
+    "linkIssues": true,
+    "draftByDefault": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "api-docs-skill",
+  "version": "1.0.0",
+  "description": "Generate OpenAPI/Swagger documentation from code and route definitions",
+  "author": "everything-codex",
+  "category": "documentation",
+  "tags": ["api", "openapi", "swagger", "documentation"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": false,
+    "shell": false
+  },
+  "dependencies": [],
+  "configuration": {
+    "format": "openapi-3.1",
+    "includeExamples": true,
+    "includeSchemas": true
+  }
+}

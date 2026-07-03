@@ -1,0 +1,19 @@
+{
+  "name": "changelog-skill",
+  "version": "1.0.0",
+  "description": "Generate and maintain CHANGELOG.md from git history and conventional commits",
+  "author": "everything-codex",
+  "category": "documentation",
+  "tags": ["changelog", "release", "conventional-commits", "versioning"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": false,
+    "shell": true
+  },
+  "dependencies": [],
+  "configuration": {
+    "format": "keep-a-changelog",
+    "conventionalCommits": true,
+    "groupByType": true
+  }
+}

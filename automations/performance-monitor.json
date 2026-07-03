@@ -1,0 +1,21 @@
+{
+  "name": "Performance Monitor",
+  "version": "1.0.0",
+  "description": "Weekly performance analysis comparing bundle size, test duration, and build times against baseline",
+  "schedule": "0 8 * * 1",
+  "timezone": "UTC",
+  "enabled": true,
+  "instructions": "Run a weekly performance health check:\n\n1. Bundle size: Build the project and compare bundle sizes against last week's baseline. Flag any bundle that grew > 10%.\n2. Build time: Measure and compare build duration. Flag if > 20% slower than baseline.\n3. Test suite duration: Run tests and compare timing. Flag slow tests (> 5s each).\n4. Dependency bloat: Check for large dependencies that could be replaced with lighter alternatives.\n5. Code complexity: Identify functions with cyclomatic complexity > 10 that were added or changed this week.\n\nProvide a summary report with:\n- Trend chart (text-based) for bundle size over last 4 weeks\n- Top 5 largest modules by size\n- Top 5 slowest tests\n- Recommendations for quick wins\n\nUpdate the performance baseline file at `docs/performance-baseline.json` with this week's measurements.",
+  "skills": [],
+  "reviewRequired": false,
+  "notifications": {
+    "onComplete": true,
+    "onError": true,
+    "onRegressions": true,
+    "channels": ["slack"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

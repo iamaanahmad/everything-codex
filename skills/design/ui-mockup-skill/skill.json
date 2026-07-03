@@ -1,0 +1,19 @@
+{
+  "name": "ui-mockup-skill",
+  "version": "1.0.0",
+  "description": "Create UI mockups and wireframes as HTML/CSS or React components from descriptions",
+  "author": "everything-codex",
+  "category": "design",
+  "tags": ["ui", "mockup", "wireframe", "prototype", "design"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": false,
+    "shell": false
+  },
+  "dependencies": [],
+  "configuration": {
+    "outputFormat": "react",
+    "styling": "tailwind",
+    "includeInteractions": true
+  }
+}

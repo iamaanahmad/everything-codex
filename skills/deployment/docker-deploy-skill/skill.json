@@ -1,0 +1,20 @@
+{
+  "name": "docker-deploy-skill",
+  "version": "1.0.0",
+  "description": "Containerize and deploy applications with Docker and Docker Compose",
+  "author": "everything-codex",
+  "category": "deployment",
+  "tags": ["docker", "containers", "deployment", "devops"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["docker"],
+  "configuration": {
+    "multiStage": true,
+    "runTests": true,
+    "pushToRegistry": false,
+    "registry": "docker.io"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "issue-triage-skill",
+  "version": "1.0.0",
+  "description": "Intelligently triage GitHub issues with priority, labels, and assignee suggestions",
+  "author": "everything-codex",
+  "category": "project-management",
+  "tags": ["issues", "triage", "github", "prioritization"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["gh"],
+  "configuration": {
+    "autoLabel": true,
+    "autoAssign": false,
+    "flagSecurityIssues": true,
+    "deduplicateIssues": true
+  }
+}

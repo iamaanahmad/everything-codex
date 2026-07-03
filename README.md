@@ -20,7 +20,12 @@ The foundation - what each config type does, how to structure your setup, multi-
 
 **Codex is OpenAI's powerful coding agent that changes how software gets built.**
 
-From pairing with a single coding agent on targeted edits to supervising coordinated teams of agents across the full lifecycle of designing, building, shipping, and maintaining software.
+Available as a **cloud agent** in ChatGPT and as an **open-source CLI** (`@openai/codex`). From pairing with a single coding agent on targeted edits to supervising coordinated teams of agents across the full lifecycle of designing, building, shipping, and maintaining software.
+
+### Two Ways to Use Codex
+
+- **Codex Cloud** - Runs in ChatGPT sidebar, powered by `codex-1` model, parallel tasks with worktrees
+- **Codex CLI** - Open-source terminal agent, runs locally, supports `o3`, `o4-mini`, `codex-1`
 
 ### Key Capabilities
 
@@ -30,7 +35,9 @@ From pairing with a single coding agent on targeted edits to supervising coordin
 - **Automations** - Background tasks that run on schedules
 - **Worktrees** - Multiple agents work on same repo without conflicts
 - **Full Lifecycle** - Design, build, ship, and maintain software
-- **Computer Control** - Codex can operate your computer alongside you
+- **Approval Modes** - `suggest`, `auto-edit`, or `full-auto` control levels
+- **MCP Support** - Connect external tools via Model Context Protocol
+- **`codex.md`** - Project memory file for persistent instructions
 
 ---
 
@@ -178,22 +185,36 @@ Use `/personality` command to switch.
 
 ### Prerequisites
 
-- Codex app installed (macOS or Windows)
+**For Codex Cloud:**
 - ChatGPT Plus, Pro, Business, Enterprise, or Edu subscription
 - Git installed
-- Node.js (for some skills)
 
-### Option 1: Clone Repository
+**For Codex CLI:**
+- Node.js v22+ (recommended) or v18+
+- OpenAI API key (`OPENAI_API_KEY`)
+- Git installed
+
+### Option 1: Install Codex CLI (New)
 
 ```bash
-# Clone the repository
-git clone https://github.com/iamaanahmad/everything-codex.git
+# Install globally
+npm install -g @openai/codex
 
-# Navigate to directory
+# Set API key
+export OPENAI_API_KEY="your-key-here"
+
+# Run in your project
+codex
+```
+
+### Option 2: Clone This Repository
+
+```bash
+git clone https://github.com/iamaanahmad/everything-codex.git
 cd everything-codex
 ```
 
-### Option 2: Install Skills
+### Option 3: Install Skills
 
 ```bash
 # Copy skills to Codex skills directory
@@ -203,7 +224,7 @@ cp -r skills/* ~/.codex/skills/
 cp -r skills/* .codex/skills/
 ```
 
-### Option 3: Set Up Automations
+### Option 4: Set Up Automations
 
 ```bash
 # Copy automations to Codex automations directory
@@ -732,25 +753,27 @@ Investigate this performance issue:
 
 ---
 
-## Comparison with Claude Code and Kiro
+## Comparison with Legacy Platforms
 
-| Feature | Claude Code | Kiro | Codex |
-|---------|-------------|------|-------|
-| Multi-Agent | No | Yes (sub-agents) | Yes (parallel threads) |
-| Skills/Powers | Skills | Powers | Skills |
-| Automations | Hooks | Hooks | Automations |
-| Worktrees | No | No | Yes |
-| Long-Running | Limited | Yes | Yes (hours/days/weeks) |
-| Computer Control | No | Limited | Yes |
-| Personalities | No | No | Yes |
-| Cloud Execution | No | No | Yes |
+| Feature | Claude Code | Kiro | Codex Cloud | Codex CLI |
+|---------|-------------|------|-------------|----------|
+| Multi-Agent | Yes (sub-agents) | Yes (sub-agents) | Yes (parallel threads) | No |
+| Skills/Powers | Skills | Powers | Skills | MCP tools |
+| Automations | Hooks | Hooks | Automations | Scripts |
+| Worktrees | No | No | Yes | No |
+| Long-Running | Limited | Yes | Yes (hours/days/weeks) | Session-based |
+| Approval Modes | No | No | No | Yes (suggest/auto-edit/full-auto) |
+| Project Memory | CLAUDE.md | `.kiro/` specs | codex.md | codex.md |
+| Open Source | Yes | No | No | Yes |
+| Cloud Execution | No | No | Yes | No (local) |
 
 **Codex Advantages:**
-- Native multi-agent orchestration
-- Worktrees for conflict-free parallel work
-- Background automations with scheduling
-- Computer control beyond code
-- Skills work across app, CLI, and IDE
+- Codex CLI is fully open-source
+- `codex.md` for persistent project memory
+- Granular approval modes for safety control
+- MCP support for extensible tool integrations
+- Cloud: native worktrees for conflict-free parallel work
+- Cloud: background automations with scheduling
 
 ---
 
@@ -773,7 +796,7 @@ Please submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for guideli
 - **Codex Documentation:** [Official Docs](https://developers.openai.com/codex)
 - **Skills Repository:** [Open Source Skills](https://github.com/openai/codex-skills)
 - **Community:** [Codex Community](https://community.openai.com/c/codex)
-- **Inspired by:** [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- **Original upstream project:** [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
 
 ---
 

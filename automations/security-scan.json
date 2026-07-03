@@ -1,0 +1,21 @@
+{
+  "name": "Security Vulnerability Scan",
+  "version": "1.0.0",
+  "description": "Daily automated security scan covering dependencies, secrets, and code vulnerabilities",
+  "schedule": "0 2 * * *",
+  "timezone": "UTC",
+  "enabled": true,
+  "instructions": "Run a comprehensive security scan on the codebase:\n\n1. Dependency vulnerabilities: Run `npm audit` (or `pip-audit` for Python). Flag any high/critical CVEs.\n2. Secrets detection: Scan for accidentally committed secrets, API keys, tokens, or credentials in code and git history.\n3. SAST: Check for common vulnerability patterns (SQL injection, XSS, insecure deserialization, hardcoded credentials).\n4. Outdated dependencies: Identify packages more than 2 major versions behind.\n5. License compliance: Flag any dependencies with non-permissive licenses (GPL, AGPL) if project is proprietary.\n\nFor each finding provide:\n- Severity (Critical/High/Medium/Low)\n- Location (file and line number)\n- Description of the risk\n- Recommended remediation\n\nIf any Critical or High severity issues are found, flag for immediate review.",
+  "skills": ["code-review-skill"],
+  "reviewRequired": true,
+  "notifications": {
+    "onComplete": false,
+    "onError": true,
+    "onCriticalFindings": true,
+    "channels": ["slack", "email"]
+  },
+  "output": {
+    "format": "markdown",
+    "destination": "review-queue"
+  }
+}

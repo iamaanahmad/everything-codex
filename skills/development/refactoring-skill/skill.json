@@ -1,0 +1,19 @@
+{
+  "name": "refactoring-skill",
+  "version": "1.0.0",
+  "description": "Safe, incremental code refactoring with test coverage verification",
+  "author": "everything-codex",
+  "category": "development",
+  "tags": ["refactoring", "clean-code", "solid", "technical-debt"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": false,
+    "shell": true
+  },
+  "dependencies": [],
+  "configuration": {
+    "requireGreenTests": true,
+    "commitAfterEachStep": true,
+    "minCoverageBeforeRefactor": 80
+  }
+}

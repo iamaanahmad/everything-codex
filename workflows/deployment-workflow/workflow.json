@@ -1,0 +1,85 @@
+{
+  "name": "Deployment Workflow",
+  "version": "1.0.0",
+  "description": "Multi-stage deployment workflow with pre-flight checks, staged rollout, and rollback capability",
+  "agents": [
+    {
+      "id": "preflight-agent",
+      "name": "Pre-flight Agent",
+      "role": "Validate everything is ready to deploy",
+      "branch": "deploy/{{version}}-preflight",
+      "tasks": [
+        "Run full test suite — must be 100% green",
+        "Check for uncommitted changes",
+        "Verify environment variables are set for target environment",
+        "Run security scan (no new vulnerabilities)",
+        "Check bundle size hasn't regressed",
+        "Verify database migrations are ready",
+        "Confirm rollback plan exists"
+      ],
+      "skills": ["code-review-skill"],
+      "dependencies": []
+    },
+    {
+      "id": "staging-agent",
+      "name": "Staging Deploy Agent",
+      "role": "Deploy to staging and run smoke tests",
+      "branch": "deploy/{{version}}-staging",
+      "tasks": [
+        "Deploy to staging environment",
+        "Run database migrations on staging",
+        "Execute smoke test suite",
+        "Verify key user flows work end-to-end",
+        "Check error rates in monitoring",
+        "Report staging deployment status"
+      ],
+      "skills": ["vercel-deploy-skill", "docker-deploy-skill"],
+      "dependencies": ["preflight-agent"]
+    },
+    {
+      "id": "production-agent",
+      "name": "Production Deploy Agent",
+      "role": "Deploy to production with zero-downtime strategy",
+      "branch": "deploy/{{version}}-production",
+      "tasks": [
+        "Create production deployment (requires manual approval)",
+        "Run database migrations with rollback script ready",
+        "Deploy using blue-green or rolling strategy",
+        "Monitor error rates for 10 minutes post-deploy",
+        "Verify health checks pass",
+        "Tag release in git"
+      ],
+      "skills": ["vercel-deploy-skill", "docker-deploy-skill"],
+      "dependencies": ["staging-agent"],
+      "requiresApproval": true
+    },
+    {
+      "id": "post-deploy-agent",
+      "name": "Post-Deploy Agent",
+      "role": "Verify production health and notify team",
+      "branch": "deploy/{{version}}-post",
+      "tasks": [
+        "Run production smoke tests",
+        "Check performance metrics vs baseline",
+        "Verify no spike in error rates",
+        "Update deployment log",
+        "Notify team via Slack/email",
+        "Update status page if applicable",
+        "Close related Linear/GitHub issues"
+      ],
+      "skills": ["linear-integration-skill"],
+      "dependencies": ["production-agent"]
+    }
+  ],
+  "mergeStrategy": "sequential",
+  "reviewRequired": true,
+  "rollbackPlan": {
+    "trigger": "error_rate > 1% OR p99_latency > 2000ms",
+    "steps": [
+      "Revert to previous deployment",
+      "Roll back database migrations if needed",
+      "Notify team immediately",
+      "Create incident issue"
+    ]
+  }
+}

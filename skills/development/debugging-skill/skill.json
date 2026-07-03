@@ -1,0 +1,19 @@
+{
+  "name": "debugging-skill",
+  "version": "1.0.0",
+  "description": "Systematic debugging with root cause analysis and fix verification",
+  "author": "everything-codex",
+  "category": "development",
+  "tags": ["debugging", "troubleshooting", "root-cause", "logs"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": false,
+    "shell": true
+  },
+  "dependencies": [],
+  "configuration": {
+    "collectLogs": true,
+    "runTests": true,
+    "addRegressionTest": true
+  }
+}

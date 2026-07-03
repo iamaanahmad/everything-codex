@@ -1,0 +1,19 @@
+{
+  "name": "cloudflare-deploy-skill",
+  "version": "1.0.0",
+  "description": "Deploy to Cloudflare Pages and Workers with edge computing support",
+  "author": "everything-codex",
+  "category": "deployment",
+  "tags": ["cloudflare", "edge", "workers", "pages", "deployment"],
+  "permissions": {
+    "fileSystem": "read",
+    "network": true,
+    "shell": true
+  },
+  "dependencies": ["wrangler"],
+  "configuration": {
+    "runTests": true,
+    "target": "pages",
+    "enableWorkers": false
+  }
+}

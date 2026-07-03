@@ -1,0 +1,20 @@
+{
+  "name": "image-generation-skill",
+  "version": "1.0.0",
+  "description": "Generate images using AI models (DALL-E, gpt-image-1) for UI assets, mockups, and content",
+  "author": "everything-codex",
+  "category": "design",
+  "tags": ["image-generation", "ai", "dall-e", "assets", "design"],
+  "permissions": {
+    "fileSystem": "write",
+    "network": true,
+    "shell": false
+  },
+  "dependencies": [],
+  "configuration": {
+    "model": "gpt-image-1",
+    "defaultSize": "1024x1024",
+    "defaultQuality": "high",
+    "outputFormat": "png"
+  }
+}

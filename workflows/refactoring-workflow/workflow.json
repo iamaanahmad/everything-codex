@@ -1,0 +1,86 @@
+{
+  "name": "Refactoring Workflow",
+  "version": "1.0.0",
+  "description": "Multi-agent workflow for large-scale, safe code refactoring",
+  "agents": [
+    {
+      "id": "analysis-agent",
+      "name": "Analysis Agent",
+      "role": "Identify refactoring opportunities and create a prioritized plan",
+      "branch": "refactor/{{scope}}-analysis",
+      "tasks": [
+        "Scan codebase for code smells (long functions, duplication, high complexity)",
+        "Measure current test coverage",
+        "Identify modules with highest technical debt",
+        "Prioritize refactoring targets by risk and impact",
+        "Document findings and proposed changes"
+      ],
+      "skills": ["code-review-skill"],
+      "dependencies": []
+    },
+    {
+      "id": "test-baseline-agent",
+      "name": "Test Baseline Agent",
+      "role": "Ensure sufficient test coverage before refactoring begins",
+      "branch": "refactor/{{scope}}-test-baseline",
+      "tasks": [
+        "Review coverage report from analysis agent",
+        "Write missing tests for modules to be refactored",
+        "Ensure all existing tests pass",
+        "Commit test baseline — this is the safety net"
+      ],
+      "skills": ["tdd-workflow-skill"],
+      "dependencies": ["analysis-agent"]
+    },
+    {
+      "id": "refactor-agent-a",
+      "name": "Refactor Agent A",
+      "role": "Refactor module A (assigned from analysis plan)",
+      "branch": "refactor/{{scope}}-module-a",
+      "tasks": [
+        "Apply refactoring incrementally (one change at a time)",
+        "Run tests after each step",
+        "Commit after each successful refactoring",
+        "Document non-obvious changes"
+      ],
+      "skills": ["refactoring-skill"],
+      "dependencies": ["test-baseline-agent"]
+    },
+    {
+      "id": "refactor-agent-b",
+      "name": "Refactor Agent B",
+      "role": "Refactor module B (assigned from analysis plan)",
+      "branch": "refactor/{{scope}}-module-b",
+      "tasks": [
+        "Apply refactoring incrementally (one change at a time)",
+        "Run tests after each step",
+        "Commit after each successful refactoring",
+        "Document non-obvious changes"
+      ],
+      "skills": ["refactoring-skill"],
+      "dependencies": ["test-baseline-agent"]
+    },
+    {
+      "id": "verification-agent",
+      "name": "Verification Agent",
+      "role": "Verify all refactoring is complete and nothing is broken",
+      "branch": "refactor/{{scope}}-verification",
+      "tasks": [
+        "Merge all refactoring branches",
+        "Run full test suite",
+        "Compare coverage before and after",
+        "Run performance benchmarks",
+        "Create summary PR with before/after metrics"
+      ],
+      "skills": ["code-review-skill"],
+      "dependencies": ["refactor-agent-a", "refactor-agent-b"]
+    }
+  ],
+  "mergeStrategy": "parallel-then-sequential",
+  "reviewRequired": true,
+  "successCriteria": {
+    "testsPass": true,
+    "coverageNotDecreased": true,
+    "noNewLintErrors": true
+  }
+}

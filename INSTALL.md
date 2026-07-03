@@ -4,11 +4,14 @@ Complete installation guide for everything-codex.
 
 ## Prerequisites
 
-### Required
-- **Codex App**: Download from [openai.com/codex](https://openai.com/codex)
-- **ChatGPT Subscription**: Plus, Pro, Business, Enterprise, or Edu
-- **Git**: For version control
-- **Node.js**: v18+ (for JavaScript/TypeScript skills)
+### For Codex Cloud
+- ChatGPT Plus, Pro, Business, Enterprise, or Edu subscription
+- Git installed
+
+### For Codex CLI
+- Node.js v22+ (recommended) or v18+
+- OpenAI API key (`OPENAI_API_KEY`)
+- Git installed
 
 ### Optional
 - **Python**: v3.8+ (for Python skills)
@@ -18,17 +21,32 @@ Complete installation guide for everything-codex.
 
 ## Installation Methods
 
-### Method 1: Clone Repository (Recommended)
+### Method 1: Install Codex CLI (Recommended for local use)
 
 ```bash
-# Clone the repository
+# Install globally
+npm install -g @openai/codex
+
+# Set your API key
+export OPENAI_API_KEY="your-key-here"
+
+# Run in your project (suggest mode - safest default)
+codex
+
+# Or with more autonomy
+codex --approval-mode auto-edit
+codex --approval-mode full-auto
+
+# Use a specific model
+codex --model o4-mini
+codex --model codex-1
+```
+
+### Method 2: Clone Repository
+
+```bash
 git clone https://github.com/iamaanahmad/everything-codex.git
-
-# Navigate to directory
 cd everything-codex
-
-# Explore the structure
-ls -la
 ```
 
 ### Method 2: Install Skills Globally
@@ -89,6 +107,25 @@ cp everything-codex/prompts/* ~/.codex/prompts/
 # Verify installation
 ls ~/.codex/prompts
 ```
+
+## Setting Up `codex.md` (Project Memory)
+
+The `codex.md` file in your project root gives Codex persistent context about your project — like `CLAUDE.md` for Claude Code.
+
+```bash
+# Copy the template from this repo
+cp codex.md /path/to/your/project/codex.md
+
+# Edit for your project
+nano /path/to/your/project/codex.md
+```
+
+Include:
+- Project overview and structure
+- Key commands (build, test, lint)
+- Coding conventions
+- Environment variable names
+- Architecture decisions
 
 ## Configuration
 
@@ -208,7 +245,50 @@ Change the `schedule` field (cron format):
 }
 ```
 
+## Approval Modes (Codex CLI)
+
+Control how much autonomy Codex has:
+
+| Mode | File Edits | Shell Commands | Best For |
+|------|-----------|----------------|----------|
+| `suggest` | Asks | Asks | Default, safest |
+| `auto-edit` | Auto | Asks | Trusted projects |
+| `full-auto` | Auto | Auto | CI/CD, automation |
+
+```bash
+codex                                    # suggest (default)
+codex --approval-mode auto-edit          # auto file edits
+codex --approval-mode full-auto          # fully autonomous
+```
+
+## MCP Integration (Codex CLI)
+
+Connect external tools via Model Context Protocol:
+
+```bash
+# Add MCP server to Codex CLI config (~/.codex/config.json)
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "<your-token>" }
+    }
+  }
+}
+```
+
 ## Verification
+
+### Verify CLI Installation
+
+```bash
+# Check version
+codex --version
+
+# Run with a simple task
+codex "list files in this directory"
+```
 
 ### Verify Skills Installation
 
@@ -394,15 +474,7 @@ rm -rf ~/.codex
 3. **Create Workflows**: Set up multi-agent workflows
 4. **Contribute**: Share your custom skills and automations
 
-## Support
-
-- **Documentation**: [Codex Docs](https://developers.openai.com/codex)
-- **Community**: [Codex Community](https://community.openai.com/c/codex)
-- **Issues**: [GitHub Issues](https://github.com/iamaanahmad/everything-codex/issues)
-
-## Resources
-
-- [Codex Skills Guide](https://developers.openai.com/codex/skills)
-- [Automation Guide](https://developers.openai.com/codex/automations)
-- [Multi-Agent Workflows](https://developers.openai.com/codex/workflows)
-- [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- **Codex CLI (open-source)**: [github.com/openai/codex](https://github.com/openai/codex)
+- **Codex Documentation**: [platform.openai.com/docs/codex](https://platform.openai.com/docs/codex)
+- **Community**: [community.openai.com](https://community.openai.com)
+- **Original upstream repository**: [github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
