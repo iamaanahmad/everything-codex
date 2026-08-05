@@ -1,480 +1,113 @@
-# Installation Guide
+# Adopt everything-codex safely
 
-Complete installation guide for everything-codex.
+This repository provides templates and examples. It does **not** install a Codex plugin, register Skills, create automations, or set CLI policy merely by copying files. The supported setup varies by Codex client and changes over time, so use the [official Codex documentation](https://developers.openai.com/codex) for exact installation and configuration commands.
 
-## Prerequisites
+## 1. Choose your Codex surface
 
-### For Codex Cloud
-- ChatGPT Plus, Pro, Business, Enterprise, or Edu subscription
-- Git installed
+Use the surface that matches the work:
 
-### For Codex CLI
-- Node.js v22+ (recommended) or v18+
-- OpenAI API key (`OPENAI_API_KEY`)
-- Git installed
+- **ChatGPT / cloud:** delegated work, remote environments, worktrees, background tasks, and scheduled automations.
+- **IDE extension:** local development with editor context, diffs, and handoff to/from cloud tasks.
+- **CLI:** local terminal workflows, approvals, scripts, and developer-controlled tool access.
+- **GitHub:** pull-request review and repository workflow integration.
+- **Managed workspace:** organization-wide policies, environment administration, monitoring, and analytics where available.
 
-### Optional
-- **Python**: v3.8+ (for Python skills)
-- **Docker**: For containerized deployments
-- **Vercel CLI**: For Vercel deployments
-- **Linear API Key**: For Linear integration
+Availability depends on plan, region, device, and workspace policy. Do not hard-code models, pricing, commands, or plan eligibility in local documentation; verify them in the official docs at setup time.
 
-## Installation Methods
-
-### Method 1: Install Codex CLI (Recommended for local use)
-
-```bash
-# Install globally
-npm install -g @openai/codex
-
-# Set your API key
-export OPENAI_API_KEY="your-key-here"
-
-# Run in your project (suggest mode - safest default)
-codex
-
-# Or with more autonomy
-codex --approval-mode auto-edit
-codex --approval-mode full-auto
-
-# Use a specific model
-codex --model o4-mini
-codex --model codex-1
-```
-
-### Method 2: Clone Repository
+## 2. Clone this library
 
 ```bash
 git clone https://github.com/iamaanahmad/everything-codex.git
 cd everything-codex
 ```
 
-### Method 2: Install Skills Globally
+This is optional if you only need an individual template.
 
-Install skills to your global Codex directory (available in all projects):
+## 3. Add project instructions in the target repository
 
-```bash
-# Create global skills directory if it doesn't exist
-mkdir -p ~/.codex/skills
+Create `AGENTS.md` at the target repository root. Codex uses repository instructions to understand your standards and expected validation.
 
-# Copy skills
-cp -r everything-codex/skills/* ~/.codex/skills/
+```md
+# Project instructions
 
-# Verify installation
-ls ~/.codex/skills
+## Commands
+- Install: `npm ci`
+- Lint: `npm run lint`
+- Test: `npm test`
+
+## Rules
+- Preserve public API compatibility unless the task explicitly authorizes a breaking change.
+- Never commit secrets or generated credentials.
+- Ask before adding dependencies, changing infrastructure, or accessing production.
+- Include tests run and any remaining risks in the final summary.
 ```
 
-### Method 3: Install Skills Per-Project
+Keep instructions accurate. Do not add universal commands that the project cannot run.
 
-Install skills for a specific project:
+## 4. Adapt an asset
 
-```bash
-# Navigate to your project
-cd /path/to/your/project
+### Prompt
 
-# Create project skills directory
-mkdir -p .codex/skills
+Copy a relevant prompt from `prompts/`, replace placeholders, and provide it to Codex with the exact target and success criteria.
 
-# Copy skills
-cp -r /path/to/everything-codex/skills/* .codex/skills/
+### Skill
 
-# Verify installation
-ls .codex/skills
-```
+Use a `skills/` directory as source material for a reusable Codex Skill or a project-specific instruction set. Read `instructions.md`, adapt tool requirements and validation steps, then create the Skill through the workflow supported by your Codex client. `skill.json` is a repository metadata template, not a guaranteed Codex manifest.
 
-### Method 4: Install Automations
+### Workflow
 
-```bash
-# Create automations directory
-mkdir -p ~/.codex/automations
+Use a directory in `workflows/` to plan parallel work. Name an integration owner, identify dependencies, and make each agent’s branch/worktree scope explicit. Do not assume a workflow JSON file launches agents by itself.
 
-# Copy automations
-cp everything-codex/automations/* ~/.codex/automations/
+### Automation
 
-# Verify installation
-ls ~/.codex/automations
-```
+Use an `automations/*.json` file as the brief for a scheduled task. Create the automation in the Codex client, then configure its schedule, time zone, notifications, context/thread behavior, access, and review requirements there. Start with read-only reporting before authorizing external writes.
 
-### Method 5: Install Prompts Library
+### Configuration or MCP
 
-```bash
-# Create prompts directory
-mkdir -p ~/.codex/prompts
+Treat `configs/` as conceptual examples. Configure the CLI, IDE, app, or managed workspace using the current documented format. Keep credentials in a secret store or environment variables, and scope every token to the least capability needed.
 
-# Copy prompts
-cp everything-codex/prompts/* ~/.codex/prompts/
+## 5. Select an appropriate permission level
 
-# Verify installation
-ls ~/.codex/prompts
-```
+Start restricted. As you allow more capability, add compensating safeguards:
 
-## Setting Up `codex.md` (Project Memory)
+| Capability | When it is justified | Minimum safeguard |
+| --- | --- | --- |
+| Repository writes | A scoped implementation task | Review diff and run validation. |
+| Shell commands | Build, tests, or a known local tool | Require confirmation outside the workspace. |
+| Network access | Dependency installation or a known API | Restrict domains where supported; never send secrets. |
+| MCP/plugin access | A task needs an approved external system | Use trusted servers and least-privilege credentials. |
+| Scheduled work | Repetitive, low-risk work | Require review before merges, deployments, or ticket changes. |
 
-The `codex.md` file in your project root gives Codex persistent context about your project — like `CLAUDE.md` for Claude Code.
+## 6. Verify a small task
 
-```bash
-# Copy the template from this repo
-cp codex.md /path/to/your/project/codex.md
+Before broad rollout, have Codex perform a reversible task such as:
 
-# Edit for your project
-nano /path/to/your/project/codex.md
-```
+1. Explain the project structure.
+2. Run the documented test or lint command.
+3. Draft a change without applying it, or make a small documentation change.
+4. Report files changed, validation evidence, and remaining risks.
+5. Review the result manually.
 
-Include:
-- Project overview and structure
-- Key commands (build, test, lint)
-- Coding conventions
-- Environment variable names
-- Architecture decisions
-
-## Configuration
-
-### 1. Team Configuration
-
-Copy and customize team configuration:
-
-```bash
-# Copy team config
-cp everything-codex/configs/team-config.json ~/.codex/team-config.json
-
-# Edit configuration
-nano ~/.codex/team-config.json
-```
-
-Update the following:
-- Team name
-- Enabled skills
-- Automation settings
-- Sandbox rules
-- Personality preference
-
-### 2. Sandbox Rules
-
-Configure security rules:
-
-```bash
-# Copy sandbox rules
-cp everything-codex/configs/sandbox-rules.json ~/.codex/sandbox-rules.json
-
-# Edit rules
-nano ~/.codex/sandbox-rules.json
-```
-
-Customize:
-- Allowed commands
-- Network access rules
-- File system permissions
-- Default permission level
-
-### 3. Personality Settings
-
-Choose interaction style:
-
-```bash
-# Copy personality settings
-cp everything-codex/configs/personality-settings.json ~/.codex/personality-settings.json
-
-# Edit settings
-nano ~/.codex/personality-settings.json
-```
-
-Choose between:
-- **Terse**: Minimal, execution-focused
-- **Conversational**: More communicative, engaging
-
-## Skill Configuration
-
-### Configure Individual Skills
-
-Each skill may require configuration:
-
-#### Linear Integration Skill
-
-```bash
-# Set Linear API key
-export LINEAR_API_KEY="your-api-key"
-
-# Or add to .env
-echo "LINEAR_API_KEY=your-api-key" >> ~/.codex/.env
-```
-
-#### Figma to Code Skill
-
-```bash
-# Set Figma API token
-export FIGMA_API_TOKEN="your-token"
-
-# Or add to .env
-echo "FIGMA_API_TOKEN=your-token" >> ~/.codex/.env
-```
-
-#### Vercel Deploy Skill
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Login to Vercel
-vercel login
-```
-
-## Automation Setup
-
-### Enable Automations
-
-1. Open Codex app
-2. Go to Settings → Automations
-3. Enable automations
-4. Configure review requirements
-5. Set notification preferences
-
-### Configure Schedules
-
-Edit automation files to customize schedules:
-
-```bash
-# Edit daily triage schedule
-nano ~/.codex/automations/daily-triage.json
-```
-
-Change the `schedule` field (cron format):
-```json
-{
-  "schedule": "0 9 * * *",  // 9 AM daily
-  "timezone": "America/New_York"
-}
-```
-
-## Approval Modes (Codex CLI)
-
-Control how much autonomy Codex has:
-
-| Mode | File Edits | Shell Commands | Best For |
-|------|-----------|----------------|----------|
-| `suggest` | Asks | Asks | Default, safest |
-| `auto-edit` | Auto | Asks | Trusted projects |
-| `full-auto` | Auto | Auto | CI/CD, automation |
-
-```bash
-codex                                    # suggest (default)
-codex --approval-mode auto-edit          # auto file edits
-codex --approval-mode full-auto          # fully autonomous
-```
-
-## MCP Integration (Codex CLI)
-
-Connect external tools via Model Context Protocol:
-
-```bash
-# Add MCP server to Codex CLI config (~/.codex/config.json)
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": { "GITHUB_TOKEN": "<your-token>" }
-    }
-  }
-}
-```
-
-## Verification
-
-### Verify CLI Installation
-
-```bash
-# Check version
-codex --version
-
-# Run with a simple task
-codex "list files in this directory"
-```
-
-### Verify Skills Installation
-
-```bash
-# List installed skills
-codex skills list
-
-# Test a skill
-codex skills test code-review-skill
-```
-
-### Verify Automations
-
-```bash
-# List automations
-codex automations list
-
-# Check automation status
-codex automations status
-```
-
-### Test Configuration
-
-```bash
-# Validate team config
-codex config validate ~/.codex/team-config.json
-
-# Validate sandbox rules
-codex config validate ~/.codex/sandbox-rules.json
-```
-
-## Usage
-
-### Using Skills
-
-In Codex chat:
-```
-Use code-review-skill to review this PR
-```
-
-Or activate automatically:
-```
-Review this code for security issues
-```
-(If autoActivate is enabled, Codex will use appropriate skills)
-
-### Using Automations
-
-Automations run automatically on schedule. View results:
-```
-Show automation results
-```
-
-Or in Codex app:
-- Go to Automations tab
-- View review queue
-- Approve/reject automation results
-
-### Using Prompts
-
-Reference prompts in your conversations:
-```
-Use the security-focused review prompt from the prompts library
-```
-
-Or copy-paste prompts directly from `prompts/` directory.
+Only then enable deeper permissions or regular automations.
 
 ## Troubleshooting
 
-### Skills Not Found
+### A template is not being recognized
 
-```bash
-# Check skills directory
-ls ~/.codex/skills
+Expected behavior: repository templates are not auto-discovered by Codex. Copy or adapt their instructions into the client-supported Skill, automation, project instruction, or prompt workflow.
 
-# Verify permissions
-chmod -R 755 ~/.codex/skills
+### Instructions are ignored
 
-# Restart Codex app
-```
+Check that `AGENTS.md` is in the target repository and contains concrete, task-relevant guidance. Reduce conflicting or overly broad instructions, then start a new task/session if needed.
 
-### Automations Not Running
+### An integration needs credentials
 
-```bash
-# Check automation status
-codex automations status
+Never add a secret to a template or tracked config. Use the supported secrets/environment configuration for your Codex client and rotate exposed credentials immediately.
 
-# View automation logs
-codex automations logs
+### An automation could make an external change
 
-# Verify schedule format
-codex automations validate
-```
+Disable or make it read-only until you have checked its scope, permissions, schedule, output destination, error behavior, and review gate.
 
-### Permission Errors
+## Keep current
 
-```bash
-# Fix permissions
-chmod -R 755 ~/.codex
-
-# Check sandbox rules
-cat ~/.codex/sandbox-rules.json
-```
-
-### API Key Issues
-
-```bash
-# Verify environment variables
-env | grep API
-
-# Check .env file
-cat ~/.codex/.env
-
-# Reload environment
-source ~/.codex/.env
-```
-
-## Updating
-
-### Update Skills
-
-```bash
-# Pull latest changes
-cd everything-codex
-git pull
-
-# Copy updated skills
-cp -r skills/* ~/.codex/skills/
-```
-
-### Update Automations
-
-```bash
-# Copy updated automations
-cp automations/* ~/.codex/automations/
-
-# Restart automations
-codex automations restart
-```
-
-### Update Configuration
-
-```bash
-# Backup current config
-cp ~/.codex/team-config.json ~/.codex/team-config.json.backup
-
-# Copy new config
-cp configs/team-config.json ~/.codex/team-config.json
-
-# Merge your customizations
-```
-
-## Uninstallation
-
-### Remove Skills
-
-```bash
-# Remove global skills
-rm -rf ~/.codex/skills
-
-# Remove project skills
-rm -rf .codex/skills
-```
-
-### Remove Automations
-
-```bash
-# Remove automations
-rm -rf ~/.codex/automations
-```
-
-### Remove Configuration
-
-```bash
-# Remove all Codex configuration
-rm -rf ~/.codex
-```
-
-## Next Steps
-
-1. **Explore Skills**: Try different skills in your projects
-2. **Customize Automations**: Adjust schedules and notifications
-3. **Create Workflows**: Set up multi-agent workflows
-4. **Contribute**: Share your custom skills and automations
-
-- **Codex CLI (open-source)**: [github.com/openai/codex](https://github.com/openai/codex)
-- **Codex Documentation**: [platform.openai.com/docs/codex](https://platform.openai.com/docs/codex)
-- **Community**: [community.openai.com](https://community.openai.com)
-- **Original upstream repository**: [github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+Codex evolves quickly. Recheck the [official documentation](https://developers.openai.com/codex), the [Codex product page](https://chatgpt.com/codex/), and your client’s release notes whenever you upgrade or introduce a new integration.

@@ -1,811 +1,111 @@
-# Everything Codex
+# everything-codex
 
-**The complete collection of Codex configurations, skills, automations, and workflows from real-world production use.**
+A practical, community-maintained library of prompts, Skills, workflow plans, automation briefs, and configuration examples for [OpenAI Codex](https://chatgpt.com/codex/).
 
-Production-ready skills, automations, multi-agent workflows, and best practices evolved from intensive daily development with OpenAI's Codex. Unlock the full potential of Codex with battle-tested patterns.
+> **Important:** This repository is a collection of reusable assets, not an installable Codex extension. Adapt a template to your project and configure it through the current Codex app, CLI, IDE extension, GitHub integration, or organization controls. Do not assume that copying these JSON files to `.codex/` makes Codex load or run them.
 
----
+## Why this repository exists
 
-## The Guides
+Codex now works across ChatGPT, the IDE extension, the CLI, GitHub, and team workflows. It can run cloud tasks, help with local development, review pull requests, use Skills and MCP-based tools, and schedule continuing work. This repository gives teams starting points for the engineering practices that make those capabilities reliable: clear instructions, scoped automation, verification, review, and safe permissions.
 
-This repo is the raw code only. For comprehensive guides, see:
+For current platform behavior, availability, and controls, use the [official Codex documentation](https://developers.openai.com/codex) as the source of truth.
 
-### **[Codex Documentation](https://developers.openai.com/codex)**
+## What Codex can do today
 
-The foundation - what each config type does, how to structure your setup, multi-agent orchestration, and the philosophy behind these configs.
+The current Codex product surface includes:
 
----
+- **ChatGPT and cloud tasks:** delegate feature work, refactors, migrations, and reviews; use parallel worktrees and cloud environments for independent tasks.
+- **CLI and IDE:** work locally in the terminal or supported VS Code-based editors, with editable diffs, task progress, approvals, image input, web search, and MCP connections.
+- **GitHub:** review pull requests automatically or on request, then continue the discussion or implement a follow-up.
+- **Skills and integrations:** codify team standards and workflows; use plugins and MCP to connect approved external tools.
+- **Automations:** schedule routine background work and reuse conversation context where the Codex product supports it.
+- **Team administration:** eligible workspaces can apply environment controls, monitor usage, and manage cloud environments.
 
-## What is Codex?
+Availability differs by plan, region, client, and organization policy. See the [Codex product page](https://chatgpt.com/codex/) and [official documentation](https://developers.openai.com/codex) before relying on a feature in production.
 
-**Codex is OpenAI's powerful coding agent that changes how software gets built.**
+## Repository layout
 
-Available as a **cloud agent** in ChatGPT and as an **open-source CLI** (`@openai/codex`). From pairing with a single coding agent on targeted edits to supervising coordinated teams of agents across the full lifecycle of designing, building, shipping, and maintaining software.
-
-### Two Ways to Use Codex
-
-- **Codex Cloud** - Runs in ChatGPT sidebar, powered by `codex-1` model, parallel tasks with worktrees
-- **Codex CLI** - Open-source terminal agent, runs locally, supports `o3`, `o4-mini`, `codex-1`
-
-### Key Capabilities
-
-- **Multi-Agent Orchestration** - Run multiple agents in parallel on different tasks
-- **Long-Running Tasks** - Agents can work for hours, days, or weeks
-- **Skills System** - Extend Codex with custom workflows and tool integrations
-- **Automations** - Background tasks that run on schedules
-- **Worktrees** - Multiple agents work on same repo without conflicts
-- **Full Lifecycle** - Design, build, ship, and maintain software
-- **Approval Modes** - `suggest`, `auto-edit`, or `full-auto` control levels
-- **MCP Support** - Connect external tools via Model Context Protocol
-- **`codex.md`** - Project memory file for persistent instructions
-
----
-
-## What's Inside
-
-This repo is organized for **Codex** - install components directly or copy manually.
-
-```
+```text
 everything-codex/
-├── skills/                  # Codex Skills (extend capabilities)
-│   ├── development/
-│   │   ├── code-review-skill/
-│   │   ├── tdd-workflow-skill/
-│   │   ├── debugging-skill/
-│   │   └── refactoring-skill/
-│   ├── deployment/
-│   │   ├── cloudflare-deploy-skill/
-│   │   ├── vercel-deploy-skill/
-│   │   ├── netlify-deploy-skill/
-│   │   └── docker-deploy-skill/
-│   ├── design/
-│   │   ├── figma-to-code-skill/
-│   │   ├── image-generation-skill/
-│   │   └── ui-mockup-skill/
-│   ├── project-management/
-│   │   ├── linear-integration-skill/
-│   │   ├── github-pr-skill/
-│   │   └── issue-triage-skill/
-│   └── documentation/
-│       ├── api-docs-skill/
-│       ├── readme-generator-skill/
-│       └── changelog-skill/
-│
-├── automations/             # Background automations
-│   ├── daily-triage.json
-│   ├── ci-failure-summary.json
-│   ├── release-brief.json
-│   ├── bug-detection.json
-│   └── dependency-updates.json
-│
-├── workflows/               # Multi-agent workflows
-│   ├── feature-development/
-│   ├── bug-fix-workflow/
-│   ├── refactoring-workflow/
-│   └── deployment-workflow/
-│
-├── prompts/                 # Reusable prompts
-│   ├── code-review-prompts.md
-│   ├── architecture-prompts.md
-│   ├── testing-prompts.md
-│   └── debugging-prompts.md
-│
-├── configs/                 # Codex configurations
-│   ├── team-config.json
-│   ├── sandbox-rules.json
-│   └── personality-settings.json
-│
-└── examples/               # Example projects
-    ├── web-app-example/
-    ├── api-service-example/
-    └── game-development-example/
+├── AGENTS.md                # Contributor instructions for this repository
+├── skills/                  # Adaptable instructions and supporting resources
+├── automations/             # Scheduled-work briefs (JSON templates)
+├── workflows/               # Multi-agent planning templates (JSON)
+├── prompts/                 # Reusable prompt collections
+├── configs/                 # Illustrative policy and integration examples
+├── examples/                # Example projects
+├── INSTALL.md               # Safe adoption and migration guide
+├── CONTRIBUTING.md          # Template contribution standards
+├── COMPARISON.md            # Capability-oriented evaluation guide
+└── STATUS.md                # Current repository inventory/status
 ```
 
----
+## Start here
 
-## Key Concepts
+1. **Install or open Codex.** Use Codex in ChatGPT, the IDE extension, or the CLI. Follow the current [quickstart](https://developers.openai.com/codex) for your client.
+2. **Add project instructions.** Create an `AGENTS.md` in the target repository with build, test, lint, safety, and review expectations. Keep it specific and short.
+3. **Choose one template.** Start with a prompt, Skill, workflow plan, or automation brief that fits a concrete task.
+4. **Adapt it.** Replace placeholders, name the target repository, identify required tools and access, and set an explicit output/review expectation.
+5. **Run with least privilege.** Begin in a restricted or approval-based mode. Enable network access, MCP, plugins, external APIs, or write actions only when necessary.
+6. **Verify and review.** Require tests or other task-appropriate evidence; inspect every change before merging or deploying.
+
+## Use the assets correctly
+
+### Project instructions
+
+Use `AGENTS.md` in your target repository to establish conventions and validation commands. Example:
+
+```md
+# Project instructions
+
+- Run `npm run lint` and `npm test` after TypeScript changes.
+- Do not change public API contracts without updating the changelog.
+- Ask before adding dependencies or accessing production systems.
+- Include a concise summary, test evidence, and remaining risks in the final response.
+```
 
 ### Skills
 
-Skills bundle instructions, resources, and scripts so Codex can reliably connect to tools, run workflows, and complete tasks according to your preferences.
+The directories under `skills/` are **authoring examples**. Their `skill.json` and `instructions.md` files document a reusable workflow; they are not guaranteed to match a product-managed Skill manifest. Copy the instructions into a Codex Skill or project workflow using the currently supported setup in your client, then test the result on a small task.
 
-**Example Skill Structure:**
-```
-my-skill/
-├── skill.json           # Skill metadata and configuration
-├── instructions.md      # Detailed instructions for Codex
-├── resources/          # Supporting files (templates, configs)
-└── scripts/            # Executable scripts
-```
+### Automations and workflows
 
-**Skill Types:**
-- **Development Skills** - Code review, testing, debugging
-- **Deployment Skills** - Deploy to cloud platforms
-- **Design Skills** - Figma integration, image generation
-- **Project Management** - Linear, GitHub, issue triage
-- **Documentation Skills** - API docs, README generation
+Files in `automations/` and `workflows/` are reusable task briefs. Use them as a checklist when creating a scheduled automation or parallel task plan in Codex. For each use, define ownership, time zone, permissions, notification/review behavior, failure handling, and an exit condition.
 
-### Automations
+### Configurations and MCP
 
-Automations let Codex work in the background on an automatic schedule. When an Automation finishes, results land in a review queue.
+Files in `configs/` are examples, not drop-in configuration. Configuration formats and policy controls vary between the CLI, IDE, desktop app, cloud environment, and managed workspace. Validate every option against the current official documentation and never put secrets in a tracked file. Prefer your platform’s secret store or environment-variable mechanism.
 
-**Example Automation:**
-```json
-{
-  "name": "Daily Issue Triage",
-  "schedule": "0 9 * * *",
-  "instructions": "Review all new GitHub issues, categorize by priority, assign labels, and suggest assignees",
-  "skills": ["github-pr-skill", "issue-triage-skill"],
-  "reviewRequired": true
-}
-```
+## Recommended operating patterns
 
-**Common Automations:**
-- Daily issue triage
-- CI failure summaries
-- Release brief generation
-- Bug detection scans
-- Dependency update checks
-- Security vulnerability scans
+| Goal | Start with | Guardrails |
+| --- | --- | --- |
+| Review a pull request | `skills/development/code-review-skill/` or review prompts | Keep a human reviewer; request evidence and run relevant tests. |
+| Implement a feature | `workflows/feature-development/` | Split independent work; assign a final integration owner. |
+| Diagnose a bug | `workflows/bug-fix-workflow/` and debugging prompts | Reproduce first; add a regression test where appropriate. |
+| Refactor safely | `workflows/refactoring-workflow/` | Establish a passing baseline and preserve behavioral coverage. |
+| Schedule routine work | `automations/` template | Start read-only; require review before external writes or merges. |
+| Connect an external system | `configs/mcp-config.json` as a conceptual example | Use only trusted servers; scope tokens and review tool permissions. |
 
-### Multi-Agent Workflows
+## Safety baseline
 
-Codex can run multiple agents in parallel, each working on different tasks without conflicts using worktrees.
-
-**Example Workflow:**
-```
-Agent 1: Implement user authentication (feature/auth branch)
-Agent 2: Add payment integration (feature/payments branch)
-Agent 3: Refactor database layer (refactor/db branch)
-
-All working simultaneously on the same repo!
-```
-
-### Worktrees
-
-Each agent works on an isolated copy of your code, allowing exploration of different paths without impacting your codebase.
-
-**Benefits:**
-- No git conflicts between agents
-- Parallel development
-- Easy to review changes per agent
-- Can check out changes locally anytime
-
-### Personalities
-
-Choose between two interaction styles:
-- **Terse/Pragmatic** - Blunt, execution-focused
-- **Conversational/Empathetic** - More communicative, engaging
-
-Use `/personality` command to switch.
-
----
-
-## Installation
-
-### Prerequisites
-
-**For Codex Cloud:**
-- ChatGPT Plus, Pro, Business, Enterprise, or Edu subscription
-- Git installed
-
-**For Codex CLI:**
-- Node.js v22+ (recommended) or v18+
-- OpenAI API key (`OPENAI_API_KEY`)
-- Git installed
-
-### Option 1: Install Codex CLI (New)
-
-```bash
-# Install globally
-npm install -g @openai/codex
-
-# Set API key
-export OPENAI_API_KEY="your-key-here"
-
-# Run in your project
-codex
-```
-
-### Option 2: Clone This Repository
-
-```bash
-git clone https://github.com/iamaanahmad/everything-codex.git
-cd everything-codex
-```
-
-### Option 3: Install Skills
-
-```bash
-# Copy skills to Codex skills directory
-cp -r skills/* ~/.codex/skills/
-
-# Or project-specific
-cp -r skills/* .codex/skills/
-```
-
-### Option 4: Set Up Automations
-
-```bash
-# Copy automations to Codex automations directory
-cp automations/* ~/.codex/automations/
-```
-
----
-
-## Usage Examples
-
-### Using Skills
-
-```
-User: Use the code-review-skill to review this PR
-
-Codex: [Activates code-review-skill]
-
-Running comprehensive code review...
-
-Security Analysis:
-✓ No hardcoded secrets
-✓ Input validation present
-✓ SQL injection prevention
-
-Performance Analysis:
-✓ Efficient algorithms
-⚠ Consider caching for /api/users endpoint
-
-Code Quality:
-✓ Well-structured functions
-✓ Good test coverage (87%)
-✓ Clear naming conventions
-
-Recommendation: APPROVE with suggestion to add caching
-```
-
-### Multi-Agent Workflow
-
-```
-User: I need to add user authentication, payment integration, and refactor the database layer
-
-Codex: I'll create three parallel agents for this:
-
-Agent 1 (Thread 1): Implementing user authentication
-- Creating feature/auth branch
-- Setting up JWT authentication
-- Adding login/register endpoints
-
-Agent 2 (Thread 2): Adding payment integration
-- Creating feature/payments branch
-- Integrating Stripe API
-- Building payment flow
-
-Agent 3 (Thread 3): Refactoring database layer
-- Creating refactor/db branch
-- Optimizing queries
-- Adding connection pooling
-
-All agents working in parallel. You can switch between threads to review progress.
-```
-
-### Using Automations
-
-```
-User: Set up daily issue triage automation
-
-Codex: Creating automation...
-
-Automation: Daily Issue Triage
-Schedule: Every day at 9 AM
-Tasks:
-- Review new GitHub issues
-- Categorize by priority (P0, P1, P2, P3)
-- Assign appropriate labels
-- Suggest assignees based on expertise
-- Flag security issues
-
-Results will appear in your review queue each morning.
-
-Automation created! ✓
-```
-
-### Deploying with Skills
-
-```
-User: Deploy this web app to Vercel
-
-Codex: [Activates vercel-deploy-skill]
-
-Deployment Process:
-1. Building production bundle... ✓
-2. Running tests... ✓
-3. Optimizing assets... ✓
-4. Deploying to Vercel... ✓
-
-Deployment successful!
-URL: https://your-app.vercel.app
-Preview: https://your-app-git-main.vercel.app
-
-Would you like me to set up automatic deployments for future commits?
-```
-
----
-
-## Key Features
-
-### 🤖 Skills Library (50+ Skills)
-
-Comprehensive skills for:
-- Development workflows (code review, TDD, debugging)
-- Cloud deployment (Vercel, Netlify, Cloudflare, Render)
-- Design integration (Figma, image generation)
-- Project management (Linear, GitHub, Jira)
-- Documentation (API docs, README, changelog)
-- Testing (unit, integration, E2E)
-- Security (vulnerability scanning, audit)
-- Performance (optimization, profiling)
-
-### ⚡ Automations (20+ Templates)
-
-Background tasks for:
-- Daily issue triage
-- CI/CD failure summaries
-- Release brief generation
-- Bug detection and reporting
-- Dependency updates
-- Security scans
-- Performance monitoring
-- Documentation updates
-
-### 🔄 Multi-Agent Workflows
-
-Orchestrate multiple agents:
-- Parallel feature development
-- Simultaneous bug fixes
-- Concurrent refactoring
-- Independent testing
-- Isolated experimentation
-
-### 🎯 Prompts Library (100+ Prompts)
-
-Reusable prompts for:
-- Code review
-- Architecture design
-- Testing strategies
-- Debugging approaches
-- Refactoring patterns
-- Documentation generation
-- Performance optimization
-- Security auditing
-
-### 🔧 Configurations
-
-Team and project configs:
-- Sandbox security rules
-- Personality settings
-- Skill permissions
-- Automation schedules
-- Worktree management
-
----
-
-## Skill Examples
-
-### Code Review Skill
-
-**Location:** `skills/development/code-review-skill/`
-
-**Purpose:** Comprehensive code review with security, performance, and quality checks
-
-**Usage:**
-```
-Use code-review-skill to review PR #123
-```
-
-**Features:**
-- Security vulnerability detection
-- Performance analysis
-- Code quality assessment
-- Test coverage verification
-- Best practices enforcement
-
-### Figma to Code Skill
-
-**Location:** `skills/design/figma-to-code-skill/`
-
-**Purpose:** Convert Figma designs to production-ready code
-
-**Usage:**
-```
-Use figma-to-code-skill to implement this design: [Figma URL]
-```
-
-**Features:**
-- Fetches design context and assets
-- Generates pixel-perfect UI code
-- Responsive design implementation
-- Component extraction
-- Style system integration
-
-### Vercel Deploy Skill
-
-**Location:** `skills/deployment/vercel-deploy-skill/`
-
-**Purpose:** Deploy web applications to Vercel
-
-**Usage:**
-```
-Use vercel-deploy-skill to deploy this app
-```
-
-**Features:**
-- Automatic build optimization
-- Environment variable management
-- Preview deployments
-- Production deployments
-- Rollback support
-
-### Linear Integration Skill
-
-**Location:** `skills/project-management/linear-integration-skill/`
-
-**Purpose:** Manage projects in Linear
-
-**Usage:**
-```
-Use linear-integration-skill to triage bugs
-```
-
-**Features:**
-- Issue creation and updates
-- Sprint planning
-- Team workload management
-- Priority assignment
-- Status tracking
-
----
-
-## Automation Examples
-
-### Daily Issue Triage
-
-**File:** `automations/daily-triage.json`
-
-**Schedule:** Every day at 9 AM
-
-**Tasks:**
-- Review new GitHub issues
-- Categorize by priority
-- Assign labels
-- Suggest assignees
-- Flag security issues
-
-### CI Failure Summary
-
-**File:** `automations/ci-failure-summary.json`
-
-**Schedule:** Every 6 hours
-
-**Tasks:**
-- Check CI/CD pipeline status
-- Summarize failures
-- Identify patterns
-- Suggest fixes
-- Notify team
-
-### Release Brief
-
-**File:** `automations/release-brief.json`
-
-**Schedule:** Daily at 5 PM
-
-**Tasks:**
-- Collect merged PRs
-- Summarize changes
-- Generate changelog
-- Identify breaking changes
-- Create release notes
-
----
-
-## Multi-Agent Workflow Examples
-
-### Feature Development Workflow
-
-**Scenario:** Building a complete feature with multiple components
-
-**Agents:**
-1. **Backend Agent** - API endpoints and business logic
-2. **Frontend Agent** - UI components and integration
-3. **Testing Agent** - Comprehensive test suite
-4. **Documentation Agent** - API docs and README updates
-
-**Workflow:**
-```
-User: Build a user profile feature with avatar upload
-
-Codex: Creating 4-agent workflow...
-
-Thread 1 (Backend): 
-- Creating /api/profile endpoints
-- Adding avatar upload to S3
-- Implementing profile update logic
-
-Thread 2 (Frontend):
-- Building ProfilePage component
-- Creating AvatarUpload component
-- Integrating with backend API
-
-Thread 3 (Testing):
-- Writing unit tests for API
-- Creating integration tests
-- Adding E2E tests for profile flow
-
-Thread 4 (Documentation):
-- Documenting API endpoints
-- Updating README
-- Creating usage examples
-
-All agents working in parallel. Review progress in each thread.
-```
-
-### Bug Fix Workflow
-
-**Scenario:** Fixing a critical bug across multiple files
-
-**Agents:**
-1. **Investigation Agent** - Root cause analysis
-2. **Fix Agent** - Implement the fix
-3. **Testing Agent** - Verify fix and prevent regression
-4. **Documentation Agent** - Update docs if needed
-
-### Refactoring Workflow
-
-**Scenario:** Large-scale refactoring
-
-**Agents:**
-1. **Analysis Agent** - Identify refactoring opportunities
-2. **Refactor Agent 1** - Refactor module A
-3. **Refactor Agent 2** - Refactor module B
-4. **Testing Agent** - Ensure no regressions
-
----
-
-## Prompts Library
-
-### Code Review Prompts
-
-```markdown
-# Security-Focused Review
-Review this code for security vulnerabilities:
-- Check for hardcoded secrets
-- Verify input validation
-- Look for SQL injection risks
-- Check authentication/authorization
-- Verify error handling doesn't leak info
-
-# Performance Review
-Analyze this code for performance issues:
-- Check algorithm complexity
-- Look for N+1 query problems
-- Identify unnecessary re-renders
-- Check for memory leaks
-- Suggest optimization opportunities
-
-# Architecture Review
-Review this code from an architectural perspective:
-- Check separation of concerns
-- Verify SOLID principles
-- Look for code smells
-- Suggest design patterns
-- Identify technical debt
-```
-
-### Testing Prompts
-
-```markdown
-# TDD Implementation
-Implement this feature using TDD:
-1. Write failing tests first (RED)
-2. Implement minimal code to pass (GREEN)
-3. Refactor while keeping tests green (REFACTOR)
-4. Ensure 80%+ coverage
-
-# E2E Test Generation
-Create E2E tests for this user flow:
-- Use Playwright
-- Test happy path
-- Test error cases
-- Test edge cases
-- Add visual regression tests
-
-# Test Coverage Analysis
-Analyze test coverage and suggest improvements:
-- Identify untested code paths
-- Suggest missing test cases
-- Check for edge cases
-- Verify error handling tests
-```
-
-### Debugging Prompts
-
-```markdown
-# Systematic Debugging
-Debug this issue systematically:
-1. Reproduce the issue
-2. Gather information (logs, metrics)
-3. Form hypothesis
-4. Test hypothesis
-5. Implement fix
-6. Verify fix
-7. Add regression test
-
-# Performance Debugging
-Investigate this performance issue:
-- Profile the code
-- Identify bottlenecks
-- Analyze database queries
-- Check network requests
-- Suggest optimizations
-```
-
----
-
-## Configuration
-
-### Team Config
-
-**File:** `configs/team-config.json`
-
-```json
-{
-  "team": "engineering",
-  "skills": {
-    "enabled": [
-      "code-review-skill",
-      "tdd-workflow-skill",
-      "vercel-deploy-skill",
-      "linear-integration-skill"
-    ],
-    "autoActivate": true
-  },
-  "automations": {
-    "enabled": true,
-    "reviewRequired": true
-  },
-  "sandbox": {
-    "allowedCommands": [
-      "npm",
-      "git",
-      "node"
-    ],
-    "networkAccess": "ask"
-  },
-  "personality": "terse"
-}
-```
-
-### Sandbox Rules
-
-**File:** `configs/sandbox-rules.json`
-
-```json
-{
-  "rules": [
-    {
-      "command": "npm install",
-      "permission": "allow",
-      "reason": "Safe package installation"
-    },
-    {
-      "command": "git push",
-      "permission": "ask",
-      "reason": "Requires confirmation before pushing"
-    },
-    {
-      "command": "rm -rf",
-      "permission": "deny",
-      "reason": "Dangerous deletion command"
-    },
-    {
-      "pattern": "curl *",
-      "permission": "ask",
-      "reason": "Network access requires approval"
-    }
-  ],
-  "defaultPermission": "ask"
-}
-```
-
----
-
-## Best Practices
-
-### Skill Development
-- ✅ Keep skills focused on single responsibility
-- ✅ Provide clear instructions in instructions.md
-- ✅ Include examples and templates
-- ✅ Test skills thoroughly before sharing
-- ✅ Document prerequisites and dependencies
-- ✅ Version your skills properly
-
-### Multi-Agent Orchestration
-- ✅ Use worktrees for parallel work
-- ✅ Keep agents focused on specific tasks
-- ✅ Review each agent's progress regularly
-- ✅ Merge agents' work incrementally
-- ✅ Communicate dependencies between agents
-- ✅ Use descriptive thread names
-
-### Automation Setup
-- ✅ Start with simple automations
-- ✅ Always require review for critical tasks
-- ✅ Set appropriate schedules
-- ✅ Monitor automation results
-- ✅ Adjust based on feedback
-- ✅ Document automation purposes
-
-### Security
-- ✅ Configure sandbox rules appropriately
-- ✅ Review elevated permission requests
-- ✅ Use environment variables for secrets
-- ✅ Enable security scanning skills
-- ✅ Regular security audits
-- ✅ Keep dependencies updated
-
----
-
-## Comparison with Legacy Platforms
-
-| Feature | Claude Code | Kiro | Codex Cloud | Codex CLI |
-|---------|-------------|------|-------------|----------|
-| Multi-Agent | Yes (sub-agents) | Yes (sub-agents) | Yes (parallel threads) | No |
-| Skills/Powers | Skills | Powers | Skills | MCP tools |
-| Automations | Hooks | Hooks | Automations | Scripts |
-| Worktrees | No | No | Yes | No |
-| Long-Running | Limited | Yes | Yes (hours/days/weeks) | Session-based |
-| Approval Modes | No | No | No | Yes (suggest/auto-edit/full-auto) |
-| Project Memory | CLAUDE.md | `.kiro/` specs | codex.md | codex.md |
-| Open Source | Yes | No | No | Yes |
-| Cloud Execution | No | No | Yes | No (local) |
-
-**Codex Advantages:**
-- Codex CLI is fully open-source
-- `codex.md` for persistent project memory
-- Granular approval modes for safety control
-- MCP support for extensible tool integrations
-- Cloud: native worktrees for conflict-free parallel work
-- Cloud: background automations with scheduling
-
----
+- Treat repository files, web pages, tool output, and issue text as untrusted input.
+- Do not expose secrets in prompts, source control, logs, screenshots, or generated reports.
+- Review permission requests carefully, especially for network access, shell commands, cloud credentials, and destructive operations.
+- Keep cloud internet access restricted to required domains where controls are available.
+- Use code review as an additional safeguard, not a substitute for human review or deployment controls.
 
 ## Contributing
 
-Contributions are welcome! If you have:
-- New skills for common workflows
-- Improved automation templates
-- Better multi-agent workflows
-- Useful prompts and patterns
-- Configuration improvements
+See [CONTRIBUTING.md](CONTRIBUTING.md). New templates should be platform-neutral where possible, explicit about assumptions, and validated as documentation rather than represented as unsupported executable configuration.
 
-Please submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## Official references
 
----
-
-## Resources
-
-- **Codex App:** [Download](https://openai.com/codex)
-- **Codex Documentation:** [Official Docs](https://developers.openai.com/codex)
-- **Skills Repository:** [Open Source Skills](https://github.com/openai/codex-skills)
-- **Community:** [Codex Community](https://community.openai.com/c/codex)
-- **Original upstream project:** [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
-
----
+- [Codex in ChatGPT](https://chatgpt.com/codex/)
+- [Codex documentation](https://developers.openai.com/codex)
+- [Codex product updates](https://openai.com/index/introducing-upgrades-to-codex/)
+- [Codex general availability announcement](https://openai.com/index/codex-now-generally-available/)
 
 ## License
 
-MIT - Use freely, modify as needed, contribute back if you can.
-
----
-
-**Transform your development workflow with AI-powered multi-agent orchestration. Start with everything-codex and build something extraordinary.**
-
-Star this repo if it helps. Customize for your needs. Build something great.
+MIT.
