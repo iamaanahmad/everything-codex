@@ -8,7 +8,7 @@ A practical, community-maintained library of prompts, Skills, workflow plans, au
 
 Codex now works across ChatGPT, the IDE extension, the CLI, GitHub, and team workflows. It can run cloud tasks, help with local development, review pull requests, use Skills and MCP-based tools, and schedule continuing work. This repository gives teams starting points for the engineering practices that make those capabilities reliable: clear instructions, scoped automation, verification, review, and safe permissions.
 
-For current platform behavior, availability, and controls, use the [official Codex documentation](https://developers.openai.com/codex) as the source of truth.
+For current platform behavior, availability, and controls, use the [official Codex documentation](https://learn.chatgpt.com/docs) as the source of truth.
 
 ## What Codex can do today
 
@@ -19,9 +19,22 @@ The current Codex product surface includes:
 - **GitHub:** review pull requests automatically or on request, then continue the discussion or implement a follow-up.
 - **Skills and integrations:** codify team standards and workflows; use plugins and MCP to connect approved external tools.
 - **Automations:** schedule routine background work and reuse conversation context where the Codex product supports it.
+- **Developer extensibility:** build Skills and plugins, use hooks, and integrate Codex through the SDK, App Server, GitHub Action, or non-interactive mode.
 - **Team administration:** eligible workspaces can apply environment controls, monitor usage, and manage cloud environments.
 
-Availability differs by plan, region, client, and organization policy. See the [Codex product page](https://chatgpt.com/codex/) and [official documentation](https://developers.openai.com/codex) before relying on a feature in production.
+Availability differs by plan, region, client, and organization policy. See the [Codex product page](https://chatgpt.com/codex/) and [official documentation](https://learn.chatgpt.com/docs) before relying on a feature in production.
+
+### Verified platform surface (November 16, 2026)
+
+The current official documentation organizes Codex across these surfaces and extension points:
+
+- **Clients:** ChatGPT desktop, Codex CLI, and the Codex IDE extension.
+- **Execution:** local environments, Git worktrees, Codex Cloud, and cloud environments.
+- **Workflow features:** code review, integrated terminal, scheduled tasks, long-running work, notifications, and permissions.
+- **Extensibility:** Skills, plugins, hooks, MCP, the Codex SDK, App Server, GitHub Action, and non-interactive mode.
+- **Integrations:** GitHub, GitLab (Beta), Slack, and Linear.
+
+Use the [official changelog](https://learn.chatgpt.com/docs/changelog) for release-level details and the [feature maturity page](https://learn.chatgpt.com/docs/feature-maturity) before treating a feature as generally available.
 
 ## Repository layout
 
@@ -36,13 +49,12 @@ everything-codex/
 ├── examples/                # Example projects
 ├── INSTALL.md               # Safe adoption and migration guide
 ├── CONTRIBUTING.md          # Template contribution standards
-├── COMPARISON.md            # Capability-oriented evaluation guide
 └── STATUS.md                # Current repository inventory/status
 ```
 
 ## Start here
 
-1. **Install or open Codex.** Use Codex in ChatGPT, the IDE extension, or the CLI. Follow the current [quickstart](https://developers.openai.com/codex) for your client.
+1. **Install or open Codex.** Use Codex in ChatGPT, the IDE extension, or the CLI. Follow the current [Codex documentation](https://learn.chatgpt.com/docs) for your client.
 2. **Add project instructions.** Create an `AGENTS.md` in the target repository with build, test, lint, safety, and review expectations. Keep it specific and short.
 3. **Choose one template.** Start with a prompt, Skill, workflow plan, or automation brief that fits a concrete task.
 4. **Adapt it.** Replace placeholders, name the target repository, identify required tools and access, and set an explicit output/review expectation.
@@ -83,9 +95,9 @@ Files in `configs/` are examples, not drop-in configuration. Configuration forma
 | Review a pull request | `skills/development/code-review-skill/` or review prompts | Keep a human reviewer; request evidence and run relevant tests. |
 | Implement a feature | `workflows/feature-development/` | Split independent work; assign a final integration owner. |
 | Diagnose a bug | `workflows/bug-fix-workflow/` and debugging prompts | Reproduce first; add a regression test where appropriate. |
-| Refactor safely | `workflows/refactoring-workflow/` | Establish a passing baseline and preserve behavioral coverage. |
+| Refactor safely | `prompts/architecture-prompts.md` and a project-specific workflow | Establish a passing baseline and preserve behavioral coverage. |
 | Schedule routine work | `automations/` template | Start read-only; require review before external writes or merges. |
-| Connect an external system | `configs/mcp-config.json` as a conceptual example | Use only trusted servers; scope tokens and review tool permissions. |
+| Connect an external system | `configs/team-config.json` and the official integration docs | Use only trusted servers; scope tokens and review tool permissions. |
 
 ## Safety baseline
 
@@ -102,7 +114,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). New templates should be platform-neutral
 ## Official references
 
 - [Codex in ChatGPT](https://chatgpt.com/codex/)
-- [Codex documentation](https://developers.openai.com/codex)
+- [Codex documentation](https://learn.chatgpt.com/docs)
+- [Build Skills](https://learn.chatgpt.com/docs/build-skills)
+- [Codex SDK](https://learn.chatgpt.com/docs/codex-sdk)
+- [GitHub Action](https://learn.chatgpt.com/docs/github-action)
+- [Feature maturity](https://learn.chatgpt.com/docs/feature-maturity)
+- [Changelog](https://learn.chatgpt.com/docs/changelog)
 - [Codex product updates](https://openai.com/index/introducing-upgrades-to-codex/)
 - [Codex general availability announcement](https://openai.com/index/codex-now-generally-available/)
 

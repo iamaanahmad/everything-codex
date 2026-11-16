@@ -104,4 +104,4 @@ Use a descriptive title and explain:
 - Any external tools, permissions, or environment assumptions.
 - Any follow-up or compatibility risk.
 
-See the [official Codex documentation](https://developers.openai.com/codex) for the current product setup and capability details.
+See the [official Codex documentation](https://learn.chatgpt.com/docs) for the current product setup and capability details.

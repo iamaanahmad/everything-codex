@@ -2,7 +2,7 @@
 
 ## Status: active template library
 
-**Last reviewed:** 2026-08-05
+**Last reviewed:** 2026-11-16
 
 This repository is a documentation and template collection for teams using OpenAI Codex. It is not an executable package or an authoritative Codex configuration distribution.
 
@@ -26,6 +26,7 @@ Repository guidance has been updated to align with current documented Codex patt
 - `AGENTS.md` is the project-instructions convention used by this library.
 - Skills, JSON configuration examples, workflow definitions, and automation definitions are described as **adaptable templates**, not auto-installed product artifacts.
 - Current Codex usage is documented across ChatGPT/cloud, CLI, IDE, GitHub, skills/plugins/MCP, and scheduled work.
+- The official documentation now also covers hooks, Git worktrees, cloud environments, the Codex SDK, App Server, GitHub Action, non-interactive mode, and GitLab (Beta), Slack, and Linear integrations.
 - Product access, models, pricing, and client-specific command lines are deferred to official documentation rather than maintained as fragile repository claims.
 - Permission, review, validation, and secret-handling guidance is now a first-class requirement.
 
@@ -42,12 +43,13 @@ When Codex capabilities change, update the guidance only after checking official
 - `README.md`
 - `INSTALL.md`
 - `CONTRIBUTING.md`
-- `COMPARISON.md`
 - `AGENTS.md`
 - `CHANGELOG.md`
 
 ## References
 
 - [Codex in ChatGPT](https://chatgpt.com/codex/)
-- [Official Codex documentation](https://developers.openai.com/codex)
+- [Official Codex documentation](https://learn.chatgpt.com/docs)
+- [Codex changelog](https://learn.chatgpt.com/docs/changelog)
+- [Feature maturity](https://learn.chatgpt.com/docs/feature-maturity)
 - [Codex product updates](https://openai.com/index/introducing-upgrades-to-codex/)

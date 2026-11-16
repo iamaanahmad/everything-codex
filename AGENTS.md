@@ -17,7 +17,7 @@ This is a curated **template library** for OpenAI Codex workflows. It is not a C
 
 - Keep a template focused on one job and state its assumptions, prerequisites, permissions, and expected output.
 - Never include secrets, access tokens, or real customer data.
-- Mark product-specific behavior as a template unless it is verified against current official Codex documentation.
+- Mark product-specific behavior as a template unless it is verified against current official Codex documentation. Use the official changelog and feature-maturity guidance for release and availability claims.
 - Prefer `AGENTS.md` for project instructions. Codex follows repository instruction files; keep instructions concise, testable, and scoped to the project.
 - Do not claim that a CLI command, config key, model, or integration exists unless it has been verified in the official documentation.
 

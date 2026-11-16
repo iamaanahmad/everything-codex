@@ -6,6 +6,11 @@ All notable changes to everything-codex are documented in this file.
 
 ### Changed
 
+- Reviewed official Codex documentation and changelog on 2026-11-16.
+- Added current documented surfaces: Skills/plugins, hooks, Git worktrees, cloud environments, Codex SDK, App Server, GitHub Action, non-interactive mode, and current third-party integrations.
+- Recorded the official changelog snapshot: Codex CLI 0.168.0 on 2026-11-13; GPT-5.5 retired from Codex on 2026-10-14, with GPT-6.1 Sol documented as the replacement when available.
+- Replaced legacy `developers.openai.com/codex` links with the current official ChatGPT Learn documentation entry point.
+- Removed README references to files not present in this repository.
 - Reframed the repository as an adaptable template library rather than an installable Codex extension.
 - Migrated repository contributor guidance from legacy `codex.md` to `AGENTS.md`.
 - Updated README and installation guidance for current Codex usage across ChatGPT/cloud, CLI, IDE, GitHub, Skills, MCP/plugins, code review, and scheduled work.

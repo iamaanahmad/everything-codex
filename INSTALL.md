@@ -1,6 +1,6 @@
 # Adopt everything-codex safely
 
-This repository provides templates and examples. It does **not** install a Codex plugin, register Skills, create automations, or set CLI policy merely by copying files. The supported setup varies by Codex client and changes over time, so use the [official Codex documentation](https://developers.openai.com/codex) for exact installation and configuration commands.
+This repository provides templates and examples. It does **not** install a Codex plugin, register Skills, create automations, or set CLI policy merely by copying files. The supported setup varies by Codex client and changes over time, so use the [official Codex documentation](https://learn.chatgpt.com/docs) for exact installation and configuration commands.
 
 ## 1. Choose your Codex surface
 
@@ -110,4 +110,4 @@ Disable or make it read-only until you have checked its scope, permissions, sche
 
 ## Keep current
 
-Codex evolves quickly. Recheck the [official documentation](https://developers.openai.com/codex), the [Codex product page](https://chatgpt.com/codex/), and your client’s release notes whenever you upgrade or introduce a new integration.
+Codex evolves quickly. Recheck the [official documentation](https://learn.chatgpt.com/docs), the [feature maturity page](https://learn.chatgpt.com/docs/feature-maturity), the [Codex product page](https://chatgpt.com/codex/), and the [official changelog](https://learn.chatgpt.com/docs/changelog) whenever you upgrade or introduce a new integration.
